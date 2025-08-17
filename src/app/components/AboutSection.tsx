@@ -1,0 +1,65 @@
+import Image from "next/image";
+import React from "react";
+
+const AboutSection = () => {
+  const tools = [
+    "/expo.svg",
+    "/docker.svg",
+    "/git.svg",
+    "/nextjs.svg",
+    "/react.svg",
+    "/github.svg",
+    "/framer.svg",
+    "/css.svg",
+    "/nodejs.svg",
+    "/typescript.svg",
+  ];
+
+  return (
+    <main className=" text-center flex flex-col px-4 md:px-8 lg:px-16 m-auto min-h-screen max-w-5xl pt-20 " id="about">
+      <div className="max-w-3xl mx-auto text-center">
+        <h2 className=" text-2xl md:text-4xl font-semibold mb-6">About Me</h2>
+        <p className=" text-base md:text-lg  mb-4 ">
+          After completing my Bachelor’s degree from{" "}
+          <strong>Herald College Kathmandu</strong>, I have dedicated myself to
+          advancing my career in technology. My passion lies in developing
+          innovative solutions, solving challenging problems, and delivering
+          seamless user experiences.
+        </p>
+        <p className="text-base md:text-lg  mb-4 ">
+          Beyond coding, I enjoy <strong>travelling</strong> and{" "}
+          <strong>bike riding</strong>, exploring new places and experiences.
+          These hobbies fuel my creativity and inspire me to approach challenges
+          from different perspectives.
+        </p>
+        <p className="text-base md:text-lg ">
+          Currently, I am focused on building my skills further and contributing
+          to exciting tech projects that make a meaningful impact.
+        </p>
+      </div>
+      <div className="mt-16">
+        <p className="text-2xl underline">Tools i use</p>
+        <div className="mt-10 space-y-2">
+          {tools.map((tools, index) => {
+            return (
+              <div
+                key={index}
+                className="inline-block mx-6 p-2 border rounded-full hover:transition-all hover:bg-gray-200 dark:hover:bg-slate-900 duration-200 hover:scale-115"
+              >
+                <Image
+                  src={tools}
+                  width={40}
+                  height={40}
+                  alt="icon"
+                  className="dark:invert"
+                />
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </main>
+  );
+};
+
+export default AboutSection;
