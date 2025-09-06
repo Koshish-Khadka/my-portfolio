@@ -39,7 +39,7 @@ const Navbar = () => {
       {/* Desktop Menu */}
       <ul className="hidden md:flex space-x-12 border px-16 py-3 rounded-4xl  backdrop-blur-xs border-[#FFFFFF80] shadow-2xl">
         {navLinks.map((link) => (
-          <li key={link.href} className="text-base font-normal">
+          <li key={link.href} className="text-base font-black hover:text-blue-500">
             <a href={link.href}>{link.label}</a>
           </li>
         ))}
