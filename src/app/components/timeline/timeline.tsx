@@ -1,10 +1,11 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
+// import { cn } from "@/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 import { motion, HTMLMotionProps } from "framer-motion";
 import { AlertCircle, Loader2 } from "lucide-react";
+import { cn } from "@/src/lib/utils";
 
 const timelineVariants = cva("flex flex-col relative", {
   variants: {

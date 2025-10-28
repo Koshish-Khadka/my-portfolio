@@ -1,10 +1,14 @@
 "use client";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/src/components/ui/button";
+import { useUser } from "@/src/context/usercontext";
+// import { Button } from "./components/ui/button";
 import { Download, MoveRight } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 
 const HeroSection = () => {
+  const { user } = useUser();
+  console.log("The user detail", user);
   return (
     // <section className="flex flex-col justify-center items-center w-11/12 md:w-1/2 m-auto h-screen">
     <section
@@ -20,7 +24,7 @@ const HeroSection = () => {
       />
       <div className="text-center">
         <p className="my-6 text-2xl md:text-3xl font-normal">
-          Hi! I’m Koshish Khadka
+          Hi! I’m {user?.full_name}
         </p>
         <p className="text-2xl md:text-4xl font-semibold leading-snug mb-4 ">
           Passionate frontend web developer who loves clean code

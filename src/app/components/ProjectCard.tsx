@@ -18,7 +18,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   return (
     <div className="bg-white dark:bg-gray-800 shadow-lg rounded-2xl overflow-hidden max-w-sm mx-auto transition-transform hover:scale-105 duration-300 ease-in-out">
       {/* Project Image */}
-      <img src={image} alt={title} className="w-full h-48 object-cover" />
+      <img
+        src={image}
+        alt={title}
+        className="w-full h-48 object-cover rounded-lg mb-4"
+      />
 
       {/* Card Content */}
       <div className="p-6 flex flex-col gap-4">

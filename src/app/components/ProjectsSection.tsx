@@ -1,7 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ProjectCard from "./ProjectCard";
+import { getAllProjects } from "@/src/actions/project";
+
+type Project = {
+  id: string;
+  title: string;
+  description: string;
+  image_url: string;
+  github_url: string;
+  preview_url: string;
+};
 
 const ProjectsSection = () => {
+  const [projectdata, setProjectdata] = React.useState<Project[]>([]);
+  useEffect(() => {
+    const fetchAllProjects = async () => {
+      const result = await getAllProjects();
+      if (result?.status === "success") {
+        // console.log("Projects:", result.projects);
+        setProjectdata(result.projects ?? []);
+      } else {
+        console.error("Error fetching projects:", result?.message);
+      }
+    };
+    fetchAllProjects();
+  }, []);
+
+  // console.log("Project Datas", projectdata);
+
   return (
     <main className="flex flex-col min-h-screen pt-16" id="projects">
       <div className="text-center p-6">
@@ -15,36 +41,18 @@ const ProjectsSection = () => {
         </p>
       </div>
       <div className="grid grid-cols-1 mt-6 space-y-5 md:max-w-11/12 md:m-auto md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <ProjectCard
-          image="https://cdn.dribbble.com/userupload/6983412/file/original-6880f4422a5e8d6ec43d1a8b08bf945a.jpg?resize=752x&vertical=center"
-          title="Job Portal App"
-          description="A full-stack job portal app built with React, Node.js, and MongoDB, featuring JWT auth and real-time chat. lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-          liveLink="https://jobportal.example.com"
-          githubLink="https://github.com/koshishkhadka/job-portal"
-        />
-        <ProjectCard
-          image="https://cdn.dribbble.com/userupload/6983412/file/original-6880f4422a5e8d6ec43d1a8b08bf945a.jpg?resize=752x&vertical=center"
-          title="Job Portal App"
-          description="A full-stack job portal app built with React, Node.js, and MongoDB, featuring JWT auth and real-time chat. lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-          liveLink="https://jobportal.example.com"
-          githubLink="https://github.com/koshishkhadka/job-portal"
-        />
-        <ProjectCard
-          image="https://cdn.dribbble.com/userupload/6983412/file/original-6880f4422a5e8d6ec43d1a8b08bf945a.jpg?resize=752x&vertical=center"
-          title="Job Portal App"
-          description="A full-stack job portal app built with React, Node.js, and MongoDB, featuring JWT auth and real-time chat."
-          liveLink="https://jobportal.example.com"
-          githubLink="https://github.com/koshishkhadka/job-portal"
-        />
-        <ProjectCard
-          image="https://cdn.dribbble.com/userupload/6983412/file/original-6880f4422a5e8d6ec43d1a8b08bf945a.jpg?resize=752x&vertical=center"
-          title="Job Portal App"
-          description="A full-stack job portal app built with React, Node.js, and MongoDB, featuring JWT auth and real-time chat. lore
-          lore
-          ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-          liveLink="https://jobportal.example.com"
-          githubLink="https://github.com/koshishkhadka/job-portal"
-        />
+        {projectdata.map((project) => {
+          return (
+            <ProjectCard
+              key={project.id}
+              image={project.image_url}
+              title={project.title}
+              description={project.description}
+              liveLink={project.preview_url}
+              githubLink={project.github_url}
+            />
+          );
+        })}
       </div>
     </main>
   );
