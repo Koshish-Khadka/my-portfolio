@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import ProjectCard from "./ProjectCard";
 import { getAllProjects } from "@/src/actions/project";
-
+import { motion } from "framer-motion";
 type Project = {
   id: string;
   title: string;
@@ -29,7 +29,14 @@ const ProjectsSection = () => {
   // console.log("Project Datas", projectdata);
 
   return (
-    <main className="flex flex-col min-h-screen pt-16" id="projects">
+    <motion.main
+      className="flex flex-col min-h-screen pt-16"
+      id="projects"
+      initial={{ opacity: 0, x: 50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 1.5 }}
+    >
       <div className="text-center p-6">
         <h2 className=" text-2xl md:text-4xl font-semibold mb-6">
           My projects
@@ -54,7 +61,7 @@ const ProjectsSection = () => {
           );
         })}
       </div>
-    </main>
+    </motion.main>
   );
 };
 

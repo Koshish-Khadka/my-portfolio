@@ -1,5 +1,6 @@
 "use client";
 
+import { logout } from "@/src/actions/auth";
 import { Button } from "@/src/components/ui/button";
 import { usePathname, useRouter } from "next/navigation";
 import React from "react";
@@ -10,6 +11,7 @@ const Sidebar = () => {
 
   const menuItems = [
     { name: "Dashboard", href: "/admin" },
+    { name: "Profile", href: "/admin/profile" },
     { name: "Add Projects", href: "/admin/projects" },
   ];
 
@@ -46,7 +48,7 @@ const Sidebar = () => {
       </nav>
       <div className="flex justify-center pb-6">
         <Button
-          // onClick={handleLogout}
+          onClick={() => logout()}
           className="w-56 h-10 bg-red-600 text-white dark:bg-red-500 dark:text-black hover:bg-red-500 dark:hover:bg-red-400 transition-all duration-200 shadow-md"
         >
           Logout

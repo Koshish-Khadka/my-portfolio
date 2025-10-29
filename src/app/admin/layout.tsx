@@ -2,12 +2,17 @@
 
 import React from "react";
 import Sidebar from "../components/sidebar";
+import { useUser } from "@/src/context/usercontext";
 
 type Props = {
   children: React.ReactNode;
 };
 
 export default function AdminLayout({ children }: Props) {
+  const { user } = useUser();
+  if (!user) {
+    return <div>Loading...</div>;
+  }
   return (
     // <div className="flex min-h-screen ">
     //   {/* Sidebar */}

@@ -6,6 +6,7 @@ import { Input } from "@/src/components/ui/input";
 import { Textarea } from "@/src/components/ui/textarea";
 import { createClient } from "@/src/utils/supabase/client";
 import React, { useState } from "react";
+import { TailSpin } from "react-loader-spinner";
 
 const Projects = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +16,7 @@ const Projects = () => {
     github: "",
     preview: "",
   });
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -31,10 +33,10 @@ const Projects = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
+    setLoading(true);
     e.preventDefault();
     // console.log("Project data:", formData);
     try {
-
       // upload image to supabase bucket
       const fileName = `Image_${Date.now()}`;
       const supabase = createClient();
@@ -74,6 +76,8 @@ const Projects = () => {
       }
     } catch (error) {
       console.error("Unexpected error:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -171,12 +175,28 @@ const Projects = () => {
 
           {/* Submit Button */}
           <div className="flex justify-center pt-4">
-            <Button
-              type="submit"
-              className="px-8 py-2 text-sm font-semibold bg-green-600 text-white dark:bg-green-500 dark:text-black hover:opacity-90 transition-all duration-300"
-            >
-              Add Project
-            </Button>
+            {loading ? (
+              <Button
+      
+                className="px-8 py-2"
+              >
+                <TailSpin
+                  visible={true}
+                  color="white"
+                  ariaLabel="tail-spin-loading"
+                  radius="1"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                />
+              </Button>
+            ) : (
+              <Button
+                type="submit"
+                className="px-8 py-2 text-sm font-semibold bg-green-600 text-white dark:bg-green-500 dark:text-black hover:opacity-90 transition-all duration-300"
+              >
+                Add Project
+              </Button>
+            )}
           </div>
         </form>
       </div>

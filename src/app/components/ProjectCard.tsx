@@ -35,22 +35,26 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
         {/* Buttons */}
         <div className="flex justify-between mt-4 gap-2">
-          <a
-            href={liveLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 text-center py-2 px-4 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors"
-          >
-            Live Preview
-          </a>
-          <a
-            href={githubLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 text-center py-2 px-4 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg font-medium hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
-          >
-            GitHub
-          </a>
+          {liveLink && (
+            <a
+              href={liveLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 text-center py-2 px-4 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors"
+            >
+              Live Preview
+            </a>
+          )}
+          {githubLink && (
+            <a
+              href={githubLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 text-center py-2 px-4 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg font-medium hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+            >
+              GitHub
+            </a>
+          )}
         </div>
       </div>
     </div>

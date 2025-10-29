@@ -4,6 +4,7 @@ import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
@@ -25,7 +26,12 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="w-full fixed flex justify-between items-center px-5 py-5 z-50">
+    <motion.nav
+      className="w-full fixed flex justify-between items-center px-5 py-5 z-50"
+      initial={{ y: -50, opacity: 0 }} // start above and invisible
+      animate={{ y: 0, opacity: 1 }} // slide to 0 and fully visible
+      transition={{ duration: 0.8, ease: "easeOut" }} // smooth animation
+    >
       {/* Logo */}
       <Link href="#top" className="md:ml-5">
         <Image
@@ -39,7 +45,10 @@ const Navbar = () => {
       {/* Desktop Menu */}
       <ul className="hidden md:flex space-x-12 border px-16 py-3 rounded-4xl  backdrop-blur-xs border-[#FFFFFF80] shadow-2xl">
         {navLinks.map((link) => (
-          <li key={link.href} className="text-base font-black hover:text-blue-500">
+          <li
+            key={link.href}
+            className="text-base font-black hover:text-blue-500"
+          >
             <a href={link.href}>{link.label}</a>
           </li>
         ))}
@@ -99,7 +108,7 @@ const Navbar = () => {
           ))}
         </ul>
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 

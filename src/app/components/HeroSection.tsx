@@ -1,22 +1,22 @@
 "use client";
 import { Button } from "@/src/components/ui/button";
 import { useUser } from "@/src/context/usercontext";
-// import { Button } from "./components/ui/button";
 import { Download, MoveRight } from "lucide-react";
-import Image from "next/image";
 import React from "react";
+import { motion } from "framer-motion";
 
 const HeroSection = () => {
   const { user } = useUser();
-  console.log("The user detail", user);
   return (
-    // <section className="flex flex-col justify-center items-center w-11/12 md:w-1/2 m-auto h-screen">
-    <section
+    <motion.section
       className="flex flex-col justify-center items-center px-4 md:px-8 lg:px-16 m-auto min-h-screen max-w-5xl"
       id="top"
+      initial={{ opacity: 0, x: -50 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 1.5 }}
     >
-      <Image
-        src={"/sunset.jpg"}
+      <img
+        src={user?.profile_picture_url}
         alt="profile"
         width={112}
         height={80}
@@ -41,14 +41,23 @@ const HeroSection = () => {
       </div>
       <div className="mt-8 flex gap-x-4">
         <Button className="py-6 font-normal hover:scale-105 duration-200">
-          view my work
-          <MoveRight />
+          <a href={"#projects"} className="flex items-center gap-2">
+            view my work
+            <MoveRight />
+          </a>
         </Button>
         <Button className="py-6 font-normal hover:scale-105 duration-200">
-          my resume <Download />
+          <a
+            href={user?.resume_url || "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2"
+          >
+            my resume <Download />
+          </a>
         </Button>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

@@ -1,6 +1,12 @@
 "use client";
 
-import { createContext, ReactNode, useContext, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { createClient } from "../utils/supabase/client";
 
 type User = {
@@ -26,6 +32,8 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isloading, setIsLoading] = useState<boolean>(false);
 
+  console.log("The data of user is", user);
+
   const fetchUser = async () => {
     setIsLoading(true);
     try {
@@ -37,7 +45,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       if (authError || !user) return;
 
       const { data: Profile } = await supabase
-        .from("Profile")
+        .from("profiles")
         .select("*")
         .eq("id", user.id)
         .single();
@@ -48,6 +56,9 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       setIsLoading(false);
     }
   };
+  useEffect(() => {
+    fetchUser();
+  }, []);
 
   return (
     <userContext.Provider

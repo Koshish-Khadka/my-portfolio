@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-
+import { motion } from "framer-motion";
 const AboutSection = () => {
   const tools = [
     "/expo.svg",
@@ -16,7 +16,14 @@ const AboutSection = () => {
   ];
 
   return (
-    <main className=" text-center flex flex-col px-4 md:px-8 lg:px-16 m-auto min-h-screen max-w-5xl pt-20 " id="about">
+    <motion.main
+      className=" text-center flex flex-col px-4 md:px-8 lg:px-16 m-auto min-h-screen max-w-5xl pt-20 "
+      id="about"
+      initial={{ opacity: 0, x: -50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 1.5 }}
+    >
       <div className="max-w-3xl mx-auto text-center">
         <h2 className=" text-2xl md:text-4xl font-semibold mb-6">About Me</h2>
         <p className=" text-base md:text-lg  mb-4 ">
@@ -58,7 +65,7 @@ const AboutSection = () => {
           })}
         </div>
       </div>
-    </main>
+    </motion.main>
   );
 };
 

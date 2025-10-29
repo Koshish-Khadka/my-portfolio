@@ -9,7 +9,7 @@ const Login = () => {
   const router = useRouter();
   const [input, setInput] = useState({ email: "", password: "" });
   const { fetchUser } = useUser();
-  
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
@@ -19,11 +19,10 @@ const Login = () => {
     const result = await login(input.email, input.password);
     if (result.status === "error") {
       alert(result.message);
-    } else {
-      router.push("/admin");
-      fetchUser();
-      alert(`hi ${result.user?.email}, you have successfully logged in!`);
     }
+    await fetchUser();
+    router.push("/admin");
+    alert(`hi ${result.user?.email}, you have successfully logged in!`);
   };
 
   return (

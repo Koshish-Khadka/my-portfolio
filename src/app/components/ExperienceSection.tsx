@@ -7,7 +7,7 @@ import {
   GraduationCap,
   NotebookPen,
 } from "lucide-react";
-
+import { motion } from "framer-motion";
 const ExperienceSection = () => {
   const timelineItems: TimelineElement[] = [
     {
@@ -43,18 +43,26 @@ const ExperienceSection = () => {
     },
   ];
   return (
-    <main className="flex flex-col min-h-screen items-center justify-center pt-20" id="experience">
+    <motion.main
+      className="flex flex-col min-h-screen items-center justify-center pt-20"
+      id="experience"
+      initial={{ opacity: 0, x: -50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 1.5 }}
+    >
       <h1 className="text-3xl font-bold mb-8">Experience</h1>
-      <p className="text-base mb-4">
+      <p className="text-base text-center mb-4 px-4 ">
         Here is a brief overview of my educational and professional journey.
       </p>
-
-      <TimelineLayout
-        items={timelineItems}
-        size="lg"
-        className="text-xl [&_svg]:w-10 [&_svg]:h-10 [&_li]:py-6"
-      />
-    </main>
+      <div className="w-full flex justify-center px-4 sm:px-12">
+        <TimelineLayout
+          items={timelineItems}
+          size="lg"
+          className="max-w-xl sm:max-w-3xl text-xl [&_svg]:w-10 [&_svg]:h-10 [&_li]:py-6"
+        />
+      </div>
+    </motion.main>
   );
 };
 
