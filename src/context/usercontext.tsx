@@ -32,7 +32,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isloading, setIsLoading] = useState<boolean>(false);
 
-  console.log("The data of user is", user);
+  // console.log("The data of user is", user);
 
   const fetchUser = async () => {
     setIsLoading(true);

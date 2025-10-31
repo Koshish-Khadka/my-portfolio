@@ -1,10 +1,23 @@
+"use client";
+
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const Footer = () => {
   const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  // Ensure theme is loaded on client before rendering
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Avoid rendering before hydration to prevent mismatch
+  if (!mounted) {
+    return null; // or a lightweight skeleton if you prefer
+  }
 
   return (
     <footer className="w-full py-6 px-5">
@@ -23,8 +36,8 @@ const Footer = () => {
       <div className="w-full border-t border-gray-300 dark:border-gray-700 mt-6 pt-4 text-center text-xs md:text-sm">
         &copy; {new Date().getFullYear()} Koshish Khadka. All rights reserved.
         <p className="text-center text-sm md:text-sm">
-          About this website: built with React & Next.js, TypeScript, Tailwind CSS, Framer Motion, React Email,
-          Vercel, MySQL,
+          About this website: built with React & Next.js, TypeScript, Supabase,
+          Tailwind CSS, Framer Motion, React Email, Vercel, MySQL,
         </p>
       </div>
     </footer>

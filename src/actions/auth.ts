@@ -49,3 +49,22 @@ export const logout = async () => {
   }
   redirect("/");
 };
+
+export const getUserProfile = async () => {
+  try {
+    const supabase = await createClient();
+
+    const { data: profiles, error } = await supabase
+      .from("profiles")
+      .select("*");
+    if (error) {
+      return {
+        status: "error",
+        message: error.message,
+      };
+    }
+    return { status: "success", profiles };
+  } catch (error) {
+    console.log("Failed to get user profile", error);
+  }
+};

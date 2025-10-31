@@ -1,69 +1,79 @@
+"use client";
 import { Mail, MapPinHouse, Phone } from "lucide-react";
 import React from "react";
 import { motion } from "framer-motion";
 
 const ContactSection = () => {
   return (
-    <main className="flex flex-col min-h-screen pt-16" id="contact">
-      <div className="text-center p-6">
-        <h2 className=" text-2xl md:text-4xl font-semibold mb-6">Say Hello!</h2>
-
-        <p className=" text-base md:text-lg  mb-4 ">
-          connect me through{" "}
-          <a href="gmail.com" className="text-blue-800 underline">
+    <main
+      id="contact"
+      className="flex flex-col items-center justify-center min-h-screen px-4 py-16 bg-white dark:bg-neutral-950"
+    >
+      {/* Header Section */}
+      <motion.div
+        initial={{ y: -50, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="text-center mb-12"
+      >
+        <h2 className="text-3xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
+          Say Hello 👋
+        </h2>
+        <p className="text-base md:text-lg text-gray-600 dark:text-gray-300">
+          You can reach out to me directly at{" "}
+          <a
+            href="mailto:koshishkhadka364@gmail.com"
+            className="text-blue-700 dark:text-blue-400 underline"
+          >
             koshishkhadka364@gmail.com
           </a>{" "}
-          or through this form.
+          or use the contact details below.
         </p>
-      </div>
-      <div className=" mt-8 w-2/3 m-auto md:flex items-center">
-        <motion.div
-          initial={{ y: -50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="text-center p-4 md:w-1/2 flex flex-col md:items-start "
-        >
-          <p className="text-3xl font-bold md:text-6xl pb-4">Lets work</p>
-          <p className="text-3xl font-bold md:text-6xl">together</p>
-          <div className="mt-8 flex flex-col justify-center items-center md:items-start space-y-2">
-            <Mail />
-            <p>Mail</p>
-            <p>koshishkhadka364@gmail.com</p>
-          </div>
-          <div className="mt-8 flex flex-col justify-center items-center md:items-start space-y-2">
-            <MapPinHouse />
-            <p>Address</p>
-            <p>Kapan,kathmandu</p>
-          </div>
-          <div className="mt-8 flex flex-col justify-center items-center md:items-start space-y-2">
-            <Phone />
-            <p>Phone</p>
-            <p>9843023686</p>
-          </div>
-        </motion.div>
-        <motion.div
-          initial={{ y: 100, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1, ease: "easeInOut" }}
-          className="flex flex-col mt-6 pt-4 space-y-5 md:w-1/2 "
-        >
-          <input
-            placeholder="Name"
-            className="bg-white text-black py-2 rounded-md pl-4 border"
-          />
-          <input
-            placeholder="Email"
-            className="bg-white text-black py-2 rounded-md pl-4 border"
-          />
-          <input
-            placeholder="Message"
-            className="bg-white text-black py-2 rounded-md pl-4 h-28 border"
-          />
-          <button className="text-white py-3 bg-[#0C2340] hover:bg-white hover:text-black transition-all ease-in duration-300 delay-100">
-            Submit
-          </button>
-        </motion.div>
-      </div>
+      </motion.div>
+
+      {/* Contact Info Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        className="grid gap-8 sm:grid-cols-1 md:grid-cols-3 w-full max-w-4xl text-center md:text-left"
+      >
+        {/* Email */}
+        <div className="flex flex-col items-center md:items-start p-6 bg-gray-100 dark:bg-neutral-800 rounded-2xl shadow-sm hover:shadow-md transition">
+          <Mail className="w-8 h-8 mb-3 text-blue-700 dark:text-blue-400" />
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+            Mail
+          </h3>
+          <p className="text-gray-700 dark:text-gray-300">
+            koshishkhadka364@gmail.com
+          </p>
+        </div>
+
+        {/* Address */}
+        <div className="flex flex-col items-center md:items-start p-6 bg-gray-100 dark:bg-neutral-800 rounded-2xl shadow-sm hover:shadow-md transition">
+          <MapPinHouse className="w-8 h-8 mb-3 text-blue-700 dark:text-blue-400" />
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+            Address
+          </h3>
+          <p className="text-gray-700 dark:text-gray-300">
+            Kapan, Kathmandu
+          </p>
+        </div>
+
+        {/* Phone */}
+        <div className="flex flex-col items-center md:items-start p-6 bg-gray-100 dark:bg-neutral-800 rounded-2xl shadow-sm hover:shadow-md transition">
+          <Phone className="w-8 h-8 mb-3 text-blue-700 dark:text-blue-400" />
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+            Phone
+          </h3>
+          <p className="text-gray-700 dark:text-gray-300">9843023686</p>
+        </div>
+      </motion.div>
+
+      {/* Footer Line */}
+      <p className="text-sm text-gray-500 dark:text-gray-400 mt-12 text-center">
+        Let’s work together to build something amazing 🚀
+      </p>
     </main>
   );
 };

@@ -4,6 +4,7 @@ import "./globals.css";
 import { Poppins, Ovo } from "next/font/google";
 import { ThemeProvider } from "../components/ui/theme-provider";
 import { UserProvider } from "../context/usercontext";
+import ThemeWrapper from "../components/ui/ThemeWrapper";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -36,7 +37,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <UserProvider>{children}</UserProvider>
+          <ThemeWrapper>
+            <UserProvider>{children}</UserProvider>
+          </ThemeWrapper>
         </ThemeProvider>
       </body>
     </html>
