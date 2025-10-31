@@ -35,6 +35,24 @@ const HeroSection = () => {
   useEffect(() => {
     fetchUserProfile();
   }, []);
+
+  if (!userdata) {
+    return (
+      <section className="flex flex-col justify-center items-center px-4 md:px-8 lg:px-16 m-auto min-h-screen max-w-5xl">
+        <div className="animate-pulse flex flex-col items-center space-y-6 mt-16">
+          <div className="rounded-full bg-gray-300 dark:bg-gray-700 h-28 w-28" />
+          <div className="h-6 bg-gray-300 dark:bg-gray-700 rounded w-48" />
+          <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-80" />
+          <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-72" />
+          <div className="flex gap-x-4 mt-6">
+            <div className="h-10 w-32 bg-gray-300 dark:bg-gray-700 rounded-lg" />
+            <div className="h-10 w-32 bg-gray-300 dark:bg-gray-700 rounded-lg" />
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <motion.section
       className="flex flex-col justify-center items-center px-4 md:px-8 lg:px-16 m-auto min-h-screen max-w-5xl"
@@ -55,7 +73,8 @@ const HeroSection = () => {
           Hi! I’m {userdata?.full_name}
         </p>
         <p className="text-2xl md:text-4xl font-semibold leading-snug mb-4 ">
-         A developer passionate about crafting clean, efficient, and modern web experiences.
+          A developer passionate about crafting clean, efficient, and modern web
+          experiences.
         </p>
         <p className="text-base md:text-lg max-w-2xl mx-auto text-gray-700 dark:text-gray-300">
           I have a strong interest in building engaging and user-friendly web
