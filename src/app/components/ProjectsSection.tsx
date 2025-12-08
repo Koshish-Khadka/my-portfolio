@@ -47,7 +47,9 @@ const ProjectsSection = () => {
           projects showcasing my expertise in web development.
         </p>
       </div>
-      <div className="grid grid-cols-1 mt-6 space-y-5 md:max-w-11/12 md:m-auto md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div
+        className="grid grid-cols-1 mt-6 space-y-5 md:max-w-[90%] md:m-auto md:grid-cols-2 lg:grid-cols-3 gap-6"
+      >
         {projectdata.map((project) => {
           return (
             <ProjectCard

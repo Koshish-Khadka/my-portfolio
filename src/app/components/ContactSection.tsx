@@ -5,8 +5,12 @@ import { motion } from "framer-motion";
 
 const ContactSection = () => {
   return (
-    <main
+    <motion.main
       id="contact"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 1.2 }}
       className="flex flex-col items-center justify-center min-h-screen px-4 py-16 bg-white dark:bg-neutral-950"
     >
       {/* Header Section */}
@@ -31,42 +35,48 @@ const ContactSection = () => {
         </p>
       </motion.div>
 
-      {/* Contact Info Section */}
+      {/* Contact Cards */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="grid gap-8 sm:grid-cols-1 md:grid-cols-3 w-full max-w-4xl text-center md:text-left"
+        className="grid gap-8 md:grid-cols-3 w-full max-w-4xl text-center md:text-left items-stretch"
       >
         {/* Email */}
-        <div className="flex flex-col items-center md:items-start p-6 bg-gray-100 dark:bg-neutral-800 rounded-2xl shadow-sm hover:shadow-md transition">
+        <div className="flex flex-col items-center md:items-start p-6 bg-gray-100 dark:bg-neutral-800 rounded-2xl shadow-sm hover:shadow-md hover:scale-105 transition h-full">
           <Mail className="w-8 h-8 mb-3 text-blue-700 dark:text-blue-400" />
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
             Mail
           </h3>
-          <p className="text-gray-700 dark:text-gray-300">
+          <a
+            href="mailto:koshishkhadka364@gmail.com"
+            className="text-gray-700 dark:text-gray-300 underline"
+          >
             koshishkhadka364@gmail.com
-          </p>
+          </a>
         </div>
 
         {/* Address */}
-        <div className="flex flex-col items-center md:items-start p-6 bg-gray-100 dark:bg-neutral-800 rounded-2xl shadow-sm hover:shadow-md transition">
+        <div className="flex flex-col items-center md:items-start p-6 bg-gray-100 dark:bg-neutral-800 rounded-2xl shadow-sm hover:shadow-md hover:scale-105 transition h-full">
           <MapPinHouse className="w-8 h-8 mb-3 text-blue-700 dark:text-blue-400" />
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
             Address
           </h3>
-          <p className="text-gray-700 dark:text-gray-300">
-            Kapan, Kathmandu
-          </p>
+          <p className="text-gray-700 dark:text-gray-300">Kapan, Kathmandu</p>
         </div>
 
         {/* Phone */}
-        <div className="flex flex-col items-center md:items-start p-6 bg-gray-100 dark:bg-neutral-800 rounded-2xl shadow-sm hover:shadow-md transition">
+        <div className="flex flex-col items-center md:items-start p-6 bg-gray-100 dark:bg-neutral-800 rounded-2xl shadow-sm hover:shadow-md hover:scale-105 transition h-full">
           <Phone className="w-8 h-8 mb-3 text-blue-700 dark:text-blue-400" />
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
             Phone
           </h3>
-          <p className="text-gray-700 dark:text-gray-300">9843023686</p>
+          <a
+            href="tel:9843023686"
+            className="text-gray-700 dark:text-gray-300 underline"
+          >
+            9843023686
+          </a>
         </div>
       </motion.div>
 
@@ -74,7 +84,7 @@ const ContactSection = () => {
       <p className="text-sm text-gray-500 dark:text-gray-400 mt-12 text-center">
         Let’s work together to build something amazing 🚀
       </p>
-    </main>
+    </motion.main>
   );
 };
 

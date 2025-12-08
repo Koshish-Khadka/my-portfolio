@@ -16,15 +16,17 @@ const AboutSection = () => {
   ];
 
   return (
-    <motion.main
+    <section
       className=" text-center flex flex-col px-4 md:px-8 lg:px-16 m-auto min-h-screen max-w-5xl pt-20 "
       id="about"
-      initial={{ opacity: 0, x: -50 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 1.5 }}
     >
-      <div className="max-w-3xl mx-auto text-center">
+      <motion.div
+        className="max-w-3xl mx-auto text-center"
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 1.5 }}
+      >
         <h2 className=" text-2xl md:text-4xl font-semibold mb-6">About Me</h2>
         <p className=" text-base md:text-lg  mb-4 ">
           After completing my Bachelor’s degree from{" "}
@@ -43,7 +45,7 @@ const AboutSection = () => {
           Currently, I am focused on building my skills further and contributing
           to exciting tech projects that make a meaningful impact.
         </p>
-      </div>
+      </motion.div>
       <div className="mt-16">
         <p className="text-2xl underline">Tools i use</p>
         <div className="mt-10 space-y-2">
@@ -65,7 +67,7 @@ const AboutSection = () => {
           })}
         </div>
       </div>
-    </motion.main>
+    </section>
   );
 };
 
