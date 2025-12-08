@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect } from "react";
 import ProjectCard from "./ProjectCard";
 import { getAllProjects } from "@/src/actions/project";
@@ -34,7 +36,7 @@ const ProjectsSection = () => {
       id="projects"
       initial={{ opacity: 0, x: 50 }}
       whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
+      viewport={{ once: false, amount: 0.1 }}
       transition={{ duration: 1.5 }}
     >
       <div className="text-center p-6">
@@ -47,9 +49,7 @@ const ProjectsSection = () => {
           projects showcasing my expertise in web development.
         </p>
       </div>
-      <div
-        className="grid grid-cols-1 mt-6 space-y-5 md:max-w-[90%] md:m-auto md:grid-cols-2 lg:grid-cols-3 gap-6"
-      >
+      <div className="grid grid-cols-1 mt-6 md:max-w-[90%] md:m-auto md:grid-cols-2 lg:grid-cols-3 gap-6">
         {projectdata.map((project) => {
           return (
             <ProjectCard
