@@ -37,7 +37,7 @@ const Footer = () => {
         &copy; {new Date().getFullYear()} Koshish Khadka. All rights reserved.
         <p className="text-center text-sm md:text-sm">
           About this website: built with React & Next.js, TypeScript, Supabase,
-          Tailwind CSS, Framer Motion, React Email, Vercel, MySQL,
+          Tailwind CSS, Framer Motion, React Email, Vercel.
         </p>
       </div>
     </footer>
