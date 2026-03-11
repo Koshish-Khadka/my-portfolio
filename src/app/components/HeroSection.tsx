@@ -12,18 +12,15 @@ type userProfile = {
   profile_picture_url: string;
   resume_url: string;
 };
+
 const HeroSection = () => {
-  // const { user } = useUser();
   const [userdata, setUserdata] = useState<userProfile | null>(null);
 
-  console.log("User profile data", userdata);
   const fetchUserProfile = async () => {
     try {
       const result = await getUserProfile();
       if (result?.status === "success") {
-        if (result?.status === "success") {
-          setUserdata(result.profiles?.[0] ?? null);
-        }
+        setUserdata(result.profiles?.[0] ?? null);
       } else {
         console.log("Error fetching user profile:", result?.message);
       }
@@ -38,13 +35,13 @@ const HeroSection = () => {
 
   if (!userdata) {
     return (
-      <section className="flex flex-col justify-center items-center px-4 md:px-8 lg:px-16 m-auto min-h-screen max-w-5xl">
+      <section className="flex flex-col justify-center items-center px-4 md:px-8 lg:px-16 m-auto min-h-screen w-full max-w-5xl">
         <div className="animate-pulse flex flex-col items-center space-y-6 mt-16">
           <div className="rounded-full bg-gray-300 dark:bg-gray-700 h-28 w-28" />
           <div className="h-6 bg-gray-300 dark:bg-gray-700 rounded w-48" />
           <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-80" />
           <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-72" />
-          <div className="flex gap-x-4 mt-6">
+          <div className="flex gap-4 mt-6 flex-col sm:flex-row">
             <div className="h-10 w-32 bg-gray-300 dark:bg-gray-700 rounded-lg" />
             <div className="h-10 w-32 bg-gray-300 dark:bg-gray-700 rounded-lg" />
           </div>
@@ -55,7 +52,7 @@ const HeroSection = () => {
 
   return (
     <motion.section
-      className="flex flex-col justify-center items-center px-4 md:px-8 lg:px-16 m-auto min-h-screen max-w-5xl"
+      className="flex flex-col justify-center items-center px-4 md:px-8 lg:px-16 m-auto min-h-screen w-full max-w-5xl"
       id="top"
       initial={{ opacity: 0, x: -50 }}
       animate={{ opacity: 1, x: 0 }}
@@ -64,19 +61,17 @@ const HeroSection = () => {
       <img
         src={userdata?.profile_picture_url}
         alt="profile"
-        width={112}
-        height={80}
-        className="rounded-full mt-16"
+        className="rounded-full mt-16 w-28 h-28 md:w-36 md:h-36"
       />
-      <div className="text-center">
-        <p className="my-6 text-2xl md:text-3xl font-normal">
+      <div className="text-center mt-6">
+        <p className="my-4 text-2xl md:text-3xl font-normal">
           Hi! I’m {userdata?.full_name}
         </p>
-        <p className="text-2xl md:text-4xl font-semibold leading-snug mb-4 ">
+        <p className="text-2xl md:text-4xl font-semibold leading-snug mb-4">
           A developer passionate about crafting clean, efficient, and modern web
           experiences.
         </p>
-        <p className="text-base md:text-lg max-w-2xl mx-auto text-gray-700 dark:text-gray-300">
+        <p className="text-base md:text-lg w-full sm:max-w-xl mx-auto text-gray-700 dark:text-gray-300">
           I have a strong interest in building engaging and user-friendly web
           experiences, with a keen focus on modern technologies like React,
           TypeScript, and the latest frontend frameworks. I love exploring new
@@ -86,7 +81,7 @@ const HeroSection = () => {
           tech projects.
         </p>
       </div>
-      <div className="mt-8 flex gap-x-4">
+      <div className="mt-8 flex flex-col sm:flex-row gap-4">
         <Button className="py-6 font-normal hover:scale-105 duration-200">
           <a href={"#projects"} className="flex items-center gap-2">
             view my work

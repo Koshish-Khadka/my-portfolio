@@ -16,25 +16,25 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   githubLink,
 }) => {
   return (
-    <div className="bg-white dark:bg-gray-800 shadow-lg rounded-2xl overflow-hidden max-w-sm mx-auto transition-transform hover:scale-105 duration-300 ease-in-out">
+    <div className="bg-white dark:bg-gray-800 shadow-lg rounded-2xl overflow-hidden w-full max-w-sm md:max-w-xs mx-auto transition-transform hover:scale-105 duration-300 ease-in-out">
       {/* Project Image */}
       <img
         src={image}
         alt={title}
-        className="w-full h-48 object-cover rounded-lg mb-4"
+        className="w-full h-48 md:h-40 object-cover rounded-lg mb-4"
       />
 
       {/* Card Content */}
-      <div className="p-6 flex flex-col gap-4">
-        <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+      <div className="p-4 md:p-6 flex flex-col gap-3">
+        <h3 className="text-lg md:text-xl font-semibold text-gray-900 dark:text-white">
           {title}
         </h3>
-        <p className="text-gray-600 dark:text-gray-300 text-sm">
+        <p className="text-gray-600 dark:text-gray-300 text-sm md:text-base line-clamp-3">
           {description}
         </p>
 
         {/* Buttons */}
-        <div className="flex justify-between mt-4 gap-2">
+        <div className="flex flex-col sm:flex-row justify-center sm:justify-between mt-3 gap-2">
           {liveLink && (
             <a
               href={liveLink}

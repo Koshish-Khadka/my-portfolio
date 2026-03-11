@@ -27,7 +27,7 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      className="w-full fixed flex justify-between items-center px-5 py-5 z-50"
+      className="w-full fixed flex justify-between items-center px-4 md:px-5 py-5 z-50"
       initial={{ y: -50, opacity: 0 }} // start above and invisible
       animate={{ y: 0, opacity: 1 }} // slide to 0 and fully visible
       transition={{ duration: 0.8, ease: "easeOut" }} // smooth animation
@@ -39,11 +39,12 @@ const Navbar = () => {
           alt="Logo"
           width={112}
           height={112}
+          // className="w-16 h-16 md:w-18 "
         />
       </Link>
 
       {/* Desktop Menu */}
-      <ul className="hidden md:flex space-x-12 border px-16 py-3 rounded-4xl  backdrop-blur-xs border-[#FFFFFF80] shadow-2xl">
+      <ul className="hidden md:flex space-x-6 md:space-x-12 border px-4 md:px-16 py-3 rounded-4xl backdrop-blur-xs border-[#FFFFFF80] shadow-2xl">
         {navLinks.map((link) => (
           <li
             key={link.href}
@@ -79,7 +80,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed top-0 right-0 h-screen w-64 bg-white dark:bg-gray-900 shadow-lg transform transition-transform duration-300 ${
+        className={`fixed top-0 right-0 h-screen w-3/4 max-w-xs bg-white dark:bg-gray-900 shadow-lg transform transition-transform duration-300 ${
           openMenu ? "translate-x-0" : "translate-x-full"
         } md:hidden z-50`}
       >

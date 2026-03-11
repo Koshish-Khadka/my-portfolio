@@ -34,9 +34,9 @@ const ProjectsSection = () => {
     <motion.main
       className="flex flex-col min-h-screen pt-16"
       id="projects"
-      initial={{ opacity: 0, x: 50 }}
+      initial={{ opacity: 0, x: -50 }}
       whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: false, amount: 0.1 }}
+      viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 1.5 }}
     >
       <div className="text-center p-6">
