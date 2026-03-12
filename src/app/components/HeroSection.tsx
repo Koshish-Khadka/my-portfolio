@@ -5,6 +5,7 @@ import { Download, MoveRight } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { getUserProfile } from "@/src/actions/auth";
+import Image from "next/image";
 
 type userProfile = {
   id: string;
@@ -61,7 +62,7 @@ const HeroSection = () => {
       <img
         src={userdata?.profile_picture_url}
         alt="profile"
-        className="rounded-full mt-16 w-28 h-28 md:w-36 md:h-36"
+        className="rounded-full md:mt-24 w-28 h-24 md:w-36 md:h-36"
       />
       <div className="text-center mt-6">
         <p className="my-4 text-2xl md:text-3xl font-normal">
@@ -81,7 +82,7 @@ const HeroSection = () => {
           tech projects.
         </p>
       </div>
-      <div className="mt-8 flex flex-col sm:flex-row gap-4">
+      <div className="mt-8 py-4  flex flex-col space-y-4 sm:flex-row gap-4">
         <Button className="py-6 font-normal hover:scale-105 duration-200">
           <a href={"#projects"} className="flex items-center gap-2">
             view my work
