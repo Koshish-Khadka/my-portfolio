@@ -11,7 +11,7 @@ const ContactSection = () => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 1.2 }}
-      className="flex flex-col items-center justify-center min-h-screen px-4 py-16 bg-white dark:bg-neutral-950"
+      className="flex flex-col items-center justify-center px-4 py-16 bg-white dark:bg-neutral-950"
     >
       {/* Header Section */}
       <motion.div

@@ -44,7 +44,7 @@ const ExperienceSection = () => {
   ];
   return (
     <section
-      className="flex flex-col min-h-screen items-center justify-center pt-20"
+      className="flex flex-col items-center justify-center pt-20"
       id="experience"
     >
       <motion.div

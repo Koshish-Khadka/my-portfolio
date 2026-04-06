@@ -18,7 +18,7 @@ const AboutSection = () => {
 
   return (
     <section
-      className="text-center flex flex-col px-4 md:px-8 lg:px-16 m-auto min-h-screen max-w-5xl pt-20"
+      className="text-center flex flex-col px-4 md:px-8 lg:px-16 m-auto max-w-5xl pt-20"
       id="about"
     >
       <motion.div

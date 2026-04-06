@@ -62,7 +62,7 @@ const HeroSection = () => {
 
   return (
     <motion.section
-      className="flex flex-col justify-center items-center px-4 md:px-8 lg:px-16 m-auto min-h-screen w-full max-w-5xl"
+      className="flex flex-col justify-center items-center px-4 mt-20 md:px-8 lg:px-16 w-full m-auto max-w-5xl"
       id="top"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, x: 0 }}
@@ -71,7 +71,7 @@ const HeroSection = () => {
       <img
         src={data?.profile_picture_url}
         alt="profile"
-        className="rounded-full md:mt-24 w-28 h-24 md:w-36 md:h-36"
+        className="rounded-full md:mt-24 w-28 h-28 md:w-36 md:h-36"
       />
       <div className="text-center mt-6">
         <p className="my-4 text-2xl md:text-3xl font-normal">

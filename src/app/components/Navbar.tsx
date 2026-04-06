@@ -34,7 +34,7 @@ const Navbar = () => {
       transition={{ duration: 0.8, ease: "easeOut" }} // smooth animation
     >
       {/* Logo */}
-      <Link href="#top" className="md:ml-5">
+      <Link href="#top" className="md:ml-9">
         <Image
           src={theme === "light" ? "/HeaderIcon.png" : "/IconLight.png"}
           alt="Logo"
@@ -45,11 +45,11 @@ const Navbar = () => {
       </Link>
 
       {/* Desktop Menu */}
-      <ul className="hidden md:flex space-x-6 md:space-x-12 border px-4 md:px-16 py-3 rounded-4xl backdrop-blur-xs border-[#FFFFFF80] shadow-2xl">
+      <ul className="hidden md:flex space-x-6 md:space-x-12 border px-4 lg:px-16 py-3 rounded-4xl backdrop-blur-xs border-[#FFFFFF80] shadow-2xl">
         {navLinks.map((link) => (
           <li
             key={link.href}
-            className="text-base font-black hover:text-blue-500"
+            className="md:text-sm lg:text-base font-black hover:text-blue-500"
           >
             <a href={link.href}>{link.label}</a>
           </li>
