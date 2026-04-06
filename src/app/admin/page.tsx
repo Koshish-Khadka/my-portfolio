@@ -1,6 +1,7 @@
 "use client";
 import { deleteProjectById, getAllProjects } from "@/src/actions/project";
 import { Button } from "@/src/components/ui/button";
+import { useQuery } from "@tanstack/react-query";
 import React, { useEffect } from "react";
 type Project = {
   id: string;
@@ -12,32 +13,48 @@ type Project = {
 };
 
 const AdminPage = () => {
-  const [projectdata, setProjectdata] = React.useState<Project[]>([]);
-  
   const fetchAllProjects = async () => {
     const result = await getAllProjects();
     if (result?.status === "success") {
-      // console.log("Projects:", result.projects);
-      setProjectdata(result.projects ?? []);
+      return result.projects ?? [];
     } else {
-      console.error("Error fetching projects:", result?.message);
+      throw new Error(result?.message || "Failed to fetch projects");
     }
   };
 
-  useEffect(() => {
-    fetchAllProjects();
-  }, []);
+  const { data, isLoading, isError } = useQuery<Project[]>({
+    queryKey: ["projects"],
+    queryFn: fetchAllProjects,
+  });
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <p className="text-lg">Loading projects...</p>
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        {" "}
+        <p className="text-lg text-red-500">
+          {" "}
+          Error loading projects. Please try again later.{" "}
+        </p>{" "}
+      </div>
+    );
+  }
 
   // handle Project Delete
   const handleDelete = async (projectID: string) => {
-    // console.log("Project is", projectID);
     try {
       const result = await deleteProjectById(projectID);
       if (result?.status === "error") {
         alert("unable to deleted");
       }
       alert("Project deleted successfully");
-      fetchAllProjects();
     } catch (error) {
       console.log("Failed to delete project", error);
     }
@@ -49,7 +66,7 @@ const AdminPage = () => {
         <p className="text-lg text-gray-700 mt-3">Explore your Projects</p>
       </div>
       <div className="grid grid-cols-1 mt-6 space-y-5 md:max-w-11/12 md:m-auto md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {projectdata.map((project) => (
+        {data?.map((project) => (
           <div
             key={project.id} // ✅ Add a unique key
             className="bg-white dark:bg-gray-800 shadow-lg rounded-2xl overflow-hidden max-w-sm mx-auto transition-transform hover:scale-105 duration-300 ease-in-out"

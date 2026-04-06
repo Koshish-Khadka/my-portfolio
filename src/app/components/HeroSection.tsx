@@ -2,10 +2,10 @@
 
 import { Button } from "@/src/components/ui/button";
 import { Download, MoveRight } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { getUserProfile } from "@/src/actions/auth";
-import Image from "next/image";
+import { useQuery } from "@tanstack/react-query";
 
 type userProfile = {
   id: string;
@@ -15,13 +15,11 @@ type userProfile = {
 };
 
 const HeroSection = () => {
-  const [userdata, setUserdata] = useState<userProfile | null>(null);
-
   const fetchUserProfile = async () => {
     try {
       const result = await getUserProfile();
       if (result?.status === "success") {
-        setUserdata(result.profiles?.[0] ?? null);
+        return result.profiles?.[0] ?? null;
       } else {
         console.log("Error fetching user profile:", result?.message);
       }
@@ -30,11 +28,22 @@ const HeroSection = () => {
     }
   };
 
-  useEffect(() => {
-    fetchUserProfile();
-  }, []);
+  const { data, isLoading, isError } = useQuery<userProfile | null>({
+    queryKey: ["userProfile"],
+    queryFn: fetchUserProfile,
+  });
 
-  if (!userdata) {
+  if (isError) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        {" "}
+        <p className="text-lg text-red-500">
+          Error loading user profile. Please try again later.{" "}
+        </p>{" "}
+      </div>
+    );
+  }
+  if (isLoading) {
     return (
       <section className="flex flex-col justify-center items-center px-4 md:px-8 lg:px-16 m-auto min-h-screen w-full max-w-5xl">
         <div className="animate-pulse flex flex-col items-center space-y-6 mt-16">
@@ -55,18 +64,18 @@ const HeroSection = () => {
     <motion.section
       className="flex flex-col justify-center items-center px-4 md:px-8 lg:px-16 m-auto min-h-screen w-full max-w-5xl"
       id="top"
-      initial={{ opacity: 0, x: -50 }}
+      initial={{ opacity: 0 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 1.5 }}
     >
       <img
-        src={userdata?.profile_picture_url}
+        src={data?.profile_picture_url}
         alt="profile"
         className="rounded-full md:mt-24 w-28 h-24 md:w-36 md:h-36"
       />
       <div className="text-center mt-6">
         <p className="my-4 text-2xl md:text-3xl font-normal">
-          Hi! I’m {userdata?.full_name}
+          Hi! I’m {data?.full_name}
         </p>
         <p className="text-2xl md:text-4xl font-semibold leading-snug mb-4">
           A developer passionate about crafting clean, efficient, and modern web
@@ -91,7 +100,7 @@ const HeroSection = () => {
         </Button>
         <Button className="py-6 font-normal hover:scale-105 duration-200">
           <a
-            href={userdata?.resume_url || "#"}
+            href={data?.resume_url || "#"}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2"

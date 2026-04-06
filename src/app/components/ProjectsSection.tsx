@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import ProjectCard from "./ProjectCard";
 import { getAllProjects } from "@/src/actions/project";
 import { motion } from "framer-motion";
+import { useQuery } from "@tanstack/react-query";
+
 type Project = {
   id: string;
   title: string;
@@ -14,21 +16,39 @@ type Project = {
 };
 
 const ProjectsSection = () => {
-  const [projectdata, setProjectdata] = React.useState<Project[]>([]);
-  useEffect(() => {
-    const fetchAllProjects = async () => {
-      const result = await getAllProjects();
-      if (result?.status === "success") {
-        // console.log("Projects:", result.projects);
-        setProjectdata(result.projects ?? []);
-      } else {
-        console.error("Error fetching projects:", result?.message);
-      }
-    };
-    fetchAllProjects();
-  }, []);
+  const fetchAllProjects = async () => {
+    const result = await getAllProjects();
+    if (result?.status === "success") {
+      return result.projects ?? [];
+    } else {
+      throw new Error(result?.message || "Failed to fetch projects");
+    }
+  };
 
-  // console.log("Project Datas", projectdata);
+  const { data, isLoading, isError } = useQuery<Project[]>({
+    queryKey: ["projects"],
+    queryFn: fetchAllProjects,
+  });
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <p className="text-lg">Loading projects...</p>
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        {" "}
+        <p className="text-lg text-red-500">
+          {" "}
+          Error loading projects. Please try again later.{" "}
+        </p>{" "}
+      </div>
+    );
+  }
 
   return (
     <motion.main
@@ -49,19 +69,26 @@ const ProjectsSection = () => {
           projects showcasing my expertise in web development.
         </p>
       </div>
-      <div className="grid grid-cols-1 mt-6 p-2 md:max-w-[90%] md:m-auto md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {projectdata.map((project) => {
-          return (
-            <ProjectCard
-              key={project.id}
-              image={project.image_url}
-              title={project.title}
-              description={project.description}
-              liveLink={project.preview_url}
-              githubLink={project.github_url}
-            />
-          );
-        })}
+      {/* <div className="grid grid-cols-1 mt-6 p-2 md:max-w-[90%] md:m-auto md:grid-cols-2 lg:grid-cols-3 gap-6"> */}
+      <div className="grid grid-cols-1 mt-6 px-4 md:px-0 md:max-w-[90%] md:m-auto md:grid-cols-2 lg:grid-cols-3 gap-6"> 
+        {data?.length === 0 ? (
+          <div className="col-span-full text-center">
+            <p className="text-lg text-gray-500">No projects to display.</p>
+          </div>
+        ) : (
+          data?.map((project) => {
+            return (
+              <ProjectCard
+                key={project.id}
+                image={project.image_url}
+                title={project.title}
+                description={project.description}
+                liveLink={project.preview_url}
+                githubLink={project.github_url}
+              />
+            );
+          })
+        )}
       </div>
     </motion.main>
   );

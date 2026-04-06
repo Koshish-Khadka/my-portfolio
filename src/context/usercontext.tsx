@@ -43,7 +43,6 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
         error: authError,
       } = await supabase.auth.getUser();
       if (authError || !user) return;
-
       const { data: Profile } = await supabase
         .from("profiles")
         .select("*")
