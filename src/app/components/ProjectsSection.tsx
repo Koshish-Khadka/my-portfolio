@@ -70,7 +70,7 @@ const ProjectsSection = () => {
         </p>
       </div>
       {/* <div className="grid grid-cols-1 mt-6 p-2 md:max-w-[90%] md:m-auto md:grid-cols-2 lg:grid-cols-3 gap-6"> */}
-      <div className="grid grid-cols-1 mt-6 px-4 md:px-0 md:max-w-[90%] md:m-auto md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-2 mt-6 sm:px-6 px-4 md:px-0 lg:px-8 max-w-7xl md:m-auto md:grid-cols-2 lg:grid-cols-3 gap-6">
         {data?.length === 0 ? (
           <div className="col-span-full text-center">
             <p className="text-lg text-gray-500">No projects to display.</p>
