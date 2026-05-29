@@ -6,7 +6,7 @@ import { getAllProjects } from "@/src/actions/project";
 import { motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 
-type Project = {
+export type Project = {
   id: string;
   title: string;
   description: string;
@@ -80,6 +80,7 @@ const ProjectsSection = () => {
             return (
               <ProjectCard
                 key={project.id}
+                id={project.id}
                 image={project.image_url}
                 title={project.title}
                 description={project.description}

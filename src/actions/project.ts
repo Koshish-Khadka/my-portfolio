@@ -7,7 +7,7 @@ export const AddProject = async (
   description: string,
   image: string,
   github: string,
-  preview: string
+  preview: string,
 ) => {
   try {
     const supabase = await createClient();
@@ -69,6 +69,23 @@ export const deleteProjectById = async (projectID: string) => {
     return { status: "success" };
   } catch (error) {
     console.log("error", error);
+  }
+};
+
+export const getProjectById = async (projectId: string) => {
+  try {
+    const supabase = await createClient();
+    const { data: project, error } = await supabase
+      .from("projects")
+      .select("*")
+      .eq("id", projectId)
+      .single();
+    if (error) {
+      return { status: "error", message: error.message };
+    }
+    return { status: "success", data: project };
+  } catch (error) {
+    console.log("Failed to get product", error);
   }
 };
 

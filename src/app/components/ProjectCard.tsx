@@ -2,6 +2,7 @@ import { ArrowUpRight, Github, Globe } from "lucide-react";
 import React from "react";
 import Link from "next/link";
 interface ProjectCardProps {
+  id: string;
   image: string;
   title: string;
   description: string;
@@ -10,9 +11,9 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
+  id,
   image,
   title,
-  description,
   liveLink,
   githubLink,
 }) => {
@@ -29,7 +30,7 @@ hover:shadow-black/5
 dark:bg-white/5 dark:border-white/10 dark:hover:bg-white/10
 "
     >
-      <div className="flex flex-col h-full">
+      <Link href={`/project/${id}`} className="flex flex-col h-full">
         {/* Image Section */}
         <div className="relative aspect-[4/3] md:aspect-[5/4] overflow-hidden">
           <img
@@ -72,7 +73,7 @@ dark:bg-white/5 dark:border-white/10 dark:hover:bg-white/10
             </div>
           </div>
         </div>
-      </div>
+      </Link>
 
       {/* Bottom Links */}
       <div className="px-3 pb-3 md:px-6 md:pb-6 pt-0 flex gap-2 md:gap-3">
